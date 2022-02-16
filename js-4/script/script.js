@@ -69,7 +69,7 @@ function perfectNumber(numeric) {
 
     let sum = 0;
 
-    for (let n = 0; n <= numeric; n++) {
+    for (let n = 1; n < numeric; n++) {
         if (numeric % n === 0) {
             sum += n;
         };

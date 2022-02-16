@@ -19,6 +19,8 @@ const myCar = {
     road: function() {
         let distance = +prompt('Вкажіть відстань яку необхідно подолати');
         let time = distance / this.averageSpeed;
+        let gasoline = this.tank / this.averageСonsumption;
+        let maxrange = gasoline * 100;
         function timeOnTheRoad() {
             if (time > 4) {
                 time += 1
@@ -31,11 +33,10 @@ const myCar = {
             };
             return time;
         }
-        timeOnTheRoad()
         console.log(`Для подолання цієї відстані вам знадобиться ${time.toFixed(0)} годин з урахуванням зупинок кожних 4 години якщо шлях буде довгим. Водій ${driver.driverName} має право керувати даним транспортним засобом`);
-        // if (distance > maxrange) {
-        //     console.log('Ця поїздка потребує більше палива ніж є у вашому топливному баку, тому по дорозі потрібно буде здійснити дозаправку')
-        // }
+        if (distance > maxrange) {
+            console.log('Ця поїздка потребує більше палива ніж є у вашому топливному баку, тому по дорозі потрібно буде здійснити дозаправку')
+        }
     }
 };
 
