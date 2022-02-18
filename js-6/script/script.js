@@ -74,7 +74,7 @@ const superModifiedShoppingList = modifiedShoppingList.filter((value, index) => 
 console.log(superModifiedShoppingList);
 
 
-// modifiedShoppingList.unshift('onions')    //  --->   Завдання 2.2 (не знаю як равильно)
+// modifiedShoppingList.unshift('onions')    //  --->   Завдання 2.2 (не знаю як правильно)
 
 
 modifiedShoppingList.forEach((item) => result += item.sum)   //  --->   Завдання 3.1 (знайти суму всіх продуктів)
