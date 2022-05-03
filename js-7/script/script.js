@@ -55,8 +55,7 @@ for (i = 0; i <= modifiedPlayList.length; i++) {
     h3.textContent = modifiedPlayList.author;
     const ADDP = document.getElementsByClassName("wrapper")[0];
     ADDP.append(h3);
-}ж
-
+}
 
 
 

@@ -36,7 +36,7 @@
   
 //     // Завдання 1.5
 // function number (num_one, num_two, num_three) {
-//     console.log(num_one, num_two, num_three);   // --->  Вадіант 1
+//     console.log(num_one, num_two, num_three);   // --->  Варіант 1
 // };
 // number(1, 4, 9);
 // function numberTwo (num_four, num_five, num_six) {
