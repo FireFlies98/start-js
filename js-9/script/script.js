@@ -50,27 +50,27 @@ class Marker {
     }
 
     markerWork() {
-        let TEXT = prompt('Write the text :)');
-        let P = document.createElement('p');
-        document.body.appendChild(P);
-        P.style.color = this.color;
-        let TAPE = TEXT.replace(/\s/g, '');
+        let text = prompt('Write the text :)');
+        let p = document.createElement('p');
+        document.body.appendChild(p);
+        p.style.color = this.color;
+        let tape = text.replace(/\s/g, '');
 
-        if (this.filling > TAPE.length/2) {
-            P.textContent = TEXT;
-            this.filling -= TAPE.length/2;
+        if (this.filling > tape.length/2) {
+            p.textContent = text;
+            this.filling -= tape.length/2;
             console.log(`Еhe amount of ink in your marker = ${this.filling}`);
         } else {
             console.log('You dont have enough ink to write something');
-            let SUBTAPE = TEXT.substring(0, this.filling*2);
-            TAPE = SUBTAPE.replace(/\s/g, '');
-            let UNUSEDINK = SUBTAPE.lenght - TAPE.lenght;
+            let subtape = text.substring(0, this.filling*2);
+            tape = subtape.replace(/\s/g, '');
+            let unusedink = subtape.lenght - tape.lenght;
 
-            if (UNUSEDINK == 0) {
-                P.textContent = SUBTAPE;
+            if (unusedink == 0) {
+                p.textContent = subtape;
             } else {
-                SUBTAPE = TEXT.substring(0, this.filling*2 + UNUSEDINK);
-                P.textContent = SUBTAPE + `...`;
+                subtape = text.substring(0, this.filling*2 + unusedink);
+                p.textContent = subtape + `...`;
             }
             alert('Ink is out :(');
             this.filling = 0;
