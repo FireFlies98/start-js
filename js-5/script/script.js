@@ -8,8 +8,9 @@ const myCar = {
     information: function () {
         console.log(myCar);
     },
-    addDriver: function() {
-        console.log(driver);
+    addDriver: {
+        driverName: 'Вася Пупкін',
+        driverAge: 23,
     },
     gasStation: function() {
         let gasoline = this.tank / this.averageСonsumption;
@@ -49,6 +50,8 @@ let driver = {
 
 
 myCar.information();  // --->  виводить інформацію про машину
-myCar.addDriver();    // --->  водій, який має право керувати даним транспортним засобом
+// myCar.addDriver();    // --->  водій, який має право керувати даним транспортним засобом
 myCar.gasStation();   // --->  заправка
 myCar.road();         // --->  визначення часу поїздки, водія та пального
+
+

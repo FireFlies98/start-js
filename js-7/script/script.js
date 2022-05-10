@@ -35,20 +35,20 @@ let playList = [
 ];
 const modifiedPlayList = playList.map((item) => item)
 console.log(modifiedPlayList)
-// function createListElement() {
-//     const li = document.createElement("li");
-//     li.textContent = "im vadik";
-//     return li;
-// }
+function createListElement() {
+    const li = document.createElement("li");
+    li.textContent = "im vadik";
+    return li;
+}
 
-// function appendChildren (parent, children) {
-//     children.forEach(function(child) {
-//         parent.appendChildren(child)
-//     });
-// }
+function appendChildren (parent, children) {
+    children.forEach(function(child) {
+        parent.appendChildren(child)
+    });
+}
 
-// let myList = document.getElementById('myID');
-// console.log(myList)
+let myList = document.getElementById('myID');
+console.log(myList)
 
 for (i = 0; i <= modifiedPlayList.length; i++) {
     const h3 = document.createElement("h3");
@@ -62,14 +62,14 @@ for (i = 0; i <= modifiedPlayList.length; i++) {
     // Завдання 2
 
 const manipulateDOM = () => {
-    DIV.classList.add("box")
-    BUTTON.classList.add("buttonHidden")
+    DIV.classList.toggle("box")
+    BUTTON.classList.toggle("buttonHidden")
 }
 
-const superManipulateDOM = () => {
-    DIV.classList.add("box_hidden_two")
-    BUTTONTWO.classList.add("buttonHidden")
-    BUTTON.classList.add("buttonVisable")
+const closeManipulateDOM = () => {
+    DIV.classList.toggle("box_hidden_two")
+    BUTTONTWO.classList.toggle("buttonHidden")
+    BUTTON.classList.toggle("buttonVisable")
 }
 
 const DIV = document.getElementById("myID")
