@@ -1,0 +1,16 @@
+.footer {
+    background-color: rgba(0, 0, 0, 0.863);
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+p {
+    color: seashell;
+}
+
+span {
+    color: rgb(251, 251, 251);
+}
+
