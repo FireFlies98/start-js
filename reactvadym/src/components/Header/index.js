@@ -1,11 +1,10 @@
-function Header() {
+export default function Header() {
+
     return (
         <>
-            <header>
+            <header className="header">
                 
             </header>
         </>
     )
 }
-
-export default Header;

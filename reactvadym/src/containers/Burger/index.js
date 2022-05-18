@@ -1,9 +1,7 @@
-import "./Footer.css";
-import React from 'react'
+import  React from "react";
+import { Header, Main, Footer } from '../../components';
 
-
-
-class Footer extends React.Component {
+class Burger extends React.Component {
 
     constructor() {
         super()
@@ -90,12 +88,9 @@ class Footer extends React.Component {
 
 
     render() {
-
-
-
         return (
             <footer class="footer">
-                <p>Sale: {this.state.meat + this.state.bacon + this.state.chees + this.state.salat}$</p>
+                <p>Price: {this.state.meat + this.state.bacon + this.state.chees + this.state.salat}$</p>
                 <div>
                     <button onClick={this.addMeat}>+</button>
                     <button onClick={this.removeMeat}>-</button>
@@ -120,11 +115,10 @@ class Footer extends React.Component {
                     <p>Salat 0.2$</p>
                     <span>{this.state.salat.toFixed(1)}</span>
                 </div>
-                {/* <button class="btn_checkout" disabled>Checkout</button> */}
                 {this.state.meat + this.state.bacon + this.state.chees + this.state.salat > 1 ? (<button class="btn_checkout">Checkout</button>) : (<button class="btn_checkout" disabled>Checkout</button>)}
             </footer>
         )     
     }
 }
 
-export default Footer;
+export default Burger;
