@@ -1,0 +1,29 @@
+.burger_builder {
+    width: 92%;
+    color: seashell;
+    font-size: 26px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button_checkout {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: rgb(27, 14, 5);
+    background-color: rgb(224, 186, 17);
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.button_checkout:hover {
+    opacity: .8;
+}
+
+h2 {
+    color: rgb(224, 186, 17);
+}

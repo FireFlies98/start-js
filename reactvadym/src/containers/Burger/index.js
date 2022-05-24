@@ -1,124 +1,139 @@
 import  React from "react";
-import { Header, Main, Footer } from '../../components';
+import './Burger.css'
+import { Controls, TotalPrice, Main, MyModal, Header } from '../../components'
 
 class Burger extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
         this.state = {
-            meat: 0,
-            bacon: 0,
-            chees: 0,
-            salat: 0
+            orders: this.props.ingredients.map(e => { return { ingredient: e.name, costPerOne: e.price, quantity: 0} }),
+            inOrders: [],
+            totalPrice: 0,
+            isModalOpen: false
         }
     }
 
-    addMeat = () => {
-        this.setState(oldstate => {
+
+
+    // componentDidMount = () => {
+    //     fetch('https://beetroot-burger-app.herokuapp.com/ingredients').then(res => res.json()).then(result => {
+    //         this.setState((prevState) => {
+    //             const preparedOrder = result[0].ingredients.map(e => { return { ingredient: e.name, quantity: 0 } })
+    //             return {
+    //                 ...prevState,
+    //                 orders: preparedOrder,
+    //                 ingredients: result[0].ingredients,
+    //             }
+    //         })
+    //     });
+    // }
+
+
+    ShowingTheModalWindow = () => {
+        this.setState((prevState) => {
             return {
-                ...oldstate,
-                meat: oldstate.meat + 2
+                ...prevState,
+                isModalOpen: !prevState.isModalOpen
             }
         })
     }
 
-    removeMeat = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                meat: oldstate.meat - 2
-            }
-        })
-    }
+    prepareCheckout = () => <ul className="order_checkout">{this.state.orders.map((elem) => elem.quantity > 0 ? (<li key={elem.ingredient + elem.quantity}>{elem.ingredient}: {elem.quantity}</li>) : '')}</ul>;
 
-    addBacon = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                bacon: oldstate.bacon + 1.5
-            }
-        })
-    }
+    findIngredientPrice = (ingredient) => this.props.ingredients.find((e) => e.name === ingredient).price;
 
-    removeBacon = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                bacon: oldstate.bacon - 1.5
-            }
-        })
-    }
+    findIngredientQuantity = (ingredient) => this.state.orders.find((e) => e.ingredient === ingredient).quantity;
 
-    addChees = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                chees: oldstate.chees + 1
-            }
-        })
-    }
+    onHandleIngredientQuantity = (e) => {
+        e.preventDefault();
+        if (e.target.dataset.action === undefined) { return }
+        switch (e.target.dataset.action) {
+            case 'remove':
+                this.removeIngredient(e.target.dataset.ingre);
+                break;
+            default:
+                this.addIngredient(e.target.dataset.ingre);
+                break;
+        };
+    };
 
-    removeChees = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                chees: oldstate.chees - 1
-            }
-        })
-    }
 
-    addSalat = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                salat: oldstate.salat + 0.2
-            }
-        })
-    }
+    addIngredient = (ingredient) => {
+        if (this.findIngredientQuantity(ingredient) < 5) {
+            this.setState((prevState) => {
+                const newOrders = prevState.orders.map((elem) => {
+                    if (elem.ingredient === ingredient) {
+                        return {
+                            ...elem,
+                            quantity: elem.quantity + 1
+                        };
+                    };
+                    return elem;
+                });
 
-    removeSalat = () => {
-        this.setState(oldstate => {
-            return {
-                ...oldstate,
-                salat: oldstate.salat - 0.2
-            }
-        })
-    }
+                return {
+                    ...prevState,
+                    orders: newOrders,
+                    inOrders: [...prevState.inOrders, ingredient],
+                    totalPrice: Number(prevState.totalPrice + this.findIngredientPrice(ingredient))
+                };
+            });
+        };
+    };
+
+
+    removeIngredient = (ingredient) => {
+        if (this.findIngredientQuantity(ingredient) > 0) {
+            this.setState((prevState) => {
+                const indx = prevState.inOrders.lastIndexOf(ingredient);
+                const newInOrder = [...prevState.inOrders];
+                newInOrder.splice(indx, 1);
+
+                const newOrders = [...prevState.orders].map((elem) => {
+                    if (elem.ingredient === ingredient) {
+                        return {
+                            ...elem,
+                            quantity: elem.quantity - 1
+                        };
+                    };
+                    return elem;
+                });
+
+                return {
+                    ...prevState,
+                    orders: newOrders,
+                    inOrders: newInOrder,
+                    totalPrice: Number(prevState.totalPrice - this.findIngredientPrice(ingredient))
+                };
+            });
+        };
+    };
 
 
 
     render() {
         return (
-            <footer class="footer">
-                <p>Price: {this.state.meat + this.state.bacon + this.state.chees + this.state.salat}$</p>
-                <div>
-                    <button onClick={this.addMeat}>+</button>
-                    <button onClick={this.removeMeat}>-</button>
-                    <p>Meat 2$</p>
-                    <span>{this.state.meat}</span>
-                </div>
-                <div>
-                    <button onClick={this.addBacon}>+</button>
-                    <button onClick={this.removeBacon}>-</button>
-                    <p>Bacon 1.5$</p>
-                    <span>{this.state.bacon}</span>
-                </div>
-                <div>
-                    <button onClick={this.addChees}>+</button>
-                    <button onClick={this.removeChees}>-</button>
-                    <p>Chees 1$</p>
-                    <span>{this.state.chees}</span>
-                </div>
-                <div>
-                    <button onClick={this.addSalat}>+</button>
-                    <button onClick={this.removeSalat}>-</button>
-                    <p>Salat 0.2$</p>
-                    <span>{this.state.salat.toFixed(1)}</span>
-                </div>
-                {this.state.meat + this.state.bacon + this.state.chees + this.state.salat > 1 ? (<button class="btn_checkout">Checkout</button>) : (<button class="btn_checkout" disabled>Checkout</button>)}
-            </footer>
-        )     
+            <>
+                <Header />
+                <Main  products={this.state.inOrders} />
+                <MyModal 
+                    isOpen={this.state.isModalOpen}
+                    handleOpenClose={this.ShowingTheModalWindow}
+                    modalTitle='Please, check your order'
+                    modalContent={this.prepareCheckout()}
+                    handleOrderSave={this.handleOrderSave}
+                    isCheckout
+                />
+                <footer className="footer">
+                    <Controls onHandleIngredientQuantity={this.onHandleIngredientQuantity} ingredients={this.props.ingredients} orders={this.state.orders} />
+                    <TotalPrice totalPrice={this.state.totalPrice}  modalControl={this.ShowingTheModalWindow} />
+                </footer>
+            </>
+        )
     }
+
 }
 
 export default Burger;
+

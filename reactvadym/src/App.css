@@ -64,7 +64,7 @@ table {
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -73,7 +73,7 @@ table {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -88,7 +88,7 @@ table {
   }
 }
 
-header {
-  background-color: rgba(0, 0, 0, 0.863);
-  height: 20vh;
+body {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  ;
 }
