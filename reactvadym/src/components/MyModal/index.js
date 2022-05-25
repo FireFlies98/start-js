@@ -13,7 +13,7 @@ const modalStyles = {
     },
 }
 
-const MyModal = ({ isOpen, handleOpenClose, modalTitle, modalContent, isCheckout }) =>
+const MyModal = ({ isOpen, handleOpenClose, modalTitle, modalContent, isCheckout, handleOrderSave, inputChange, onInputChange, orderCreationState }) =>
 (
     <Modal
         ariaHideApp={false}
@@ -25,26 +25,35 @@ const MyModal = ({ isOpen, handleOpenClose, modalTitle, modalContent, isCheckout
             <div className='modal_content'>
                 <h2>{modalTitle}</h2>
                 {modalContent}
-                {isCheckout && (
+                {isCheckout && orderCreationState && (
                     <div className='modal_form'>
                         <label>Name
-                            <input type="text" className='input_name'/>
+                            <input type="text" name='name' className='input_name' onChange={inputChange} />
                         </label>
 
                         <label>Phone
-                            <input type="text" className='input_phone'/>
+                            <input type="text" name='phone' className='input_phone' onChange={inputChange} />
                         </label>
 
                         <label>Address
-                            <input type="text" className='input_address'/>
+                            <input type="text" name='address' className='input_address' onChange={inputChange} />
+                        </label>
+                        <label className='label_check'>QuickDelivery
+                            <input type='checkbox' name='delivery' className='delivery checked_inp' onChange={onInputChange} />
                         </label>
                     </div>
                 )}
             </div>
-            <div className='modal_controls'>
-                <button className='btn'>Confim</button>
-                <button className='btn' onClick={handleOpenClose}>Close</button>
-            </div>
+            {orderCreationState && (
+                <div className="modal_controls">
+                <button className="btn" onClick={handleOrderSave}>
+                    Confim
+                </button>
+                <button className="btn" onClick={handleOpenClose}>
+                    Close
+                </button>
+                </div>
+            )}
         </div>
     </Modal>
 
