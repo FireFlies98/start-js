@@ -1,0 +1,33 @@
+.lorem_ipsum {
+    display: flex;
+    max-width: 60%;
+    margin: auto;
+    margin-top: 60px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.textArea {
+    display: flex;
+    width: 60%;
+    height: 37vh;
+    margin: auto;
+    margin-top: 60px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.delete {
+    display: none;
+}
+
+
+.task_three {
+    display: flex;
+    width: 80%;
+    height: 37vh;
+    margin: auto;
+    margin-bottom: 200px;
+    margin-top: 100px;
+    font-size: 22px;
+}
